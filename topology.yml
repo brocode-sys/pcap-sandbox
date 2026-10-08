@@ -1,0 +1,28 @@
+name: pcap-placeholder
+hosts:
+  - name: lab
+    base_box:
+      image: debian-12-x86_64
+      mgmt_user: debian
+      mgmt_protocol: SSH
+    flavor: standard.small
+routers:
+  - name: router1
+    base_box:
+      image: debian-12-x86_64
+      mgmt_user: debian
+      mgmt_protocol: SSH
+    flavor: standard.small
+networks:
+  - name: lab-network
+    cidr: 10.10.30.0/24
+    accessible_by_user: true
+net_mappings:
+  - host: lab
+    network: lab-network
+    ip: 10.10.30.10
+router_mappings:
+  - router: router1
+    network: lab-network
+    ip: 10.10.30.2
+groups: []
